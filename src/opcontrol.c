@@ -9,6 +9,10 @@
  */
 
 #include "main.h"
+Ultrasonic leftSonar;
+Ultrasonic rightSonar;
+
+
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -29,7 +33,12 @@
  */
 int power, turn;
 void operatorControl() {
+	int distanceToObjectLeft = ultrasonicGet(leftSonar);
+	int distanceToObjectRight = ultrasonicGet(rightSonar);
+	leftSonar = ultrasonicInit(3,4);
+	rightSonar = ultrasonicInit(1,2);
 	while (1) {
+		distanceToObjectLeft = ultrasonicGet(leftSonar);
 		power = joystickGetAnalog(1,2);//vertical axis on right joystick
 		turn = joystickGetAnalog(1,4); //horizontal axis on right joystick
 		motorSet(2, -turn); // middle wheel
@@ -37,6 +46,23 @@ void operatorControl() {
 		motorSet(4, power + turn); //back left wheel
 		motorSet(5, power - turn); // back right wheel
 		motorSet(6, power - turn); // front right wheel
+		if(10 < leftSonar < 20 || 10 < rightSonar < 20){
+			power = 100;
+		}
+		else if(10> leftSonar || 10 > leftSonar){
+			power = -100;
+		}
+
+		if(leftSonar < rightSonar){
+			turn = 25;
+		}
+		else if(rightSonar < leftSonar){
+			turn = -25;
+		}
+		else{
+			turn = 0;
+		}
+
 		delay(20);
 	}
 }
