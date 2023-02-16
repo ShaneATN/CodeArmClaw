@@ -24,11 +24,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/opcontrol.c.o",
-            "src\\opcontrol.c"
+            "bin/init.c.o",
+            "src\\init.c"
         ],
-        "directory": "C:\\Users\\P7 Robotics\\Desktop\\vexcode\\ClawArmCode",
-        "file": "src\\opcontrol.c"
+        "directory": "c:\\Users\\P7 Robotics\\Desktop\\vexcode\\ClawArmCode",
+        "file": "src\\init.c"
     },
     {
         "arguments": [
@@ -117,10 +117,10 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/init.c.o",
-            "src\\init.c"
+            "bin/opcontrol.c.o",
+            "src\\opcontrol.c"
         ],
-        "directory": "c:\\Users\\P7 Robotics\\Desktop\\vexcode\\ClawArmCode",
-        "file": "src\\init.c"
+        "directory": "C:\\Users\\P7 Robotics\\Desktop\\vexcode\\ClawArmCode",
+        "file": "src\\opcontrol.c"
     }
 ]

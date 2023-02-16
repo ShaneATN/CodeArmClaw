@@ -37,15 +37,21 @@ void operatorControl() {
 	int distanceToObjectRight = ultrasonicGet(rightSonar);
 	leftSonar = ultrasonicInit(3,4);
 	rightSonar = ultrasonicInit(1,2);
+	printf("starting \n");
 	while (1) {
 		distanceToObjectLeft = ultrasonicGet(leftSonar);
-		power = joystickGetAnalog(1,2);//vertical axis on right joystick
+		distanceToObjectRight = ultrasonicGet(rightSonar);
+		printf("Distance left: %d \n", distanceToObjectLeft);
+		printf("Distance right: %d \n", distanceToObjectRight);
+		power = 0;
+		turn = 0;
+		/*power = joystickGetAnalog(1,2);//vertical axis on right joystick
 		turn = joystickGetAnalog(1,4); //horizontal axis on right joystick
 		motorSet(2, -turn); // middle wheel
-		motorSet(3, power + turn); //front left wheel
-		motorSet(4, power + turn); //back left wheel
-		motorSet(5, power - turn); // back right wheel
-		motorSet(6, power - turn); // front right wheel
+		motorSet(3, power + turn); //back right wheel
+		motorSet(4, power + turn); //front right wheel
+		motorSet(5, power - turn); // front left wheel
+		motorSet(6, power - turn); // back left wheel */
 		if(10 < leftSonar < 20 || 10 < rightSonar < 20){
 			power = 100;
 		}
@@ -62,7 +68,14 @@ void operatorControl() {
 		else{
 			turn = 0;
 		}
-
-		delay(20);
+		motorSet(2, -turn); // middle wheel
+		motorSet(3, power /*+ turn*/); //back right wheel
+		motorSet(4, power /*+ turn*/); //front right wheel
+		motorSet(5, power /*- turn*/); // front left wheel
+		motorSet(6, power /*- turn*/); // back left wheel
+		//printf("The distance to object on left is %f", distanceToObjectLeft);
+		//printf("The distance to object on right is %f", distanceToObjectRight);
+		//delay(20);
+		delay(50);
 	}
 }
